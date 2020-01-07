@@ -53,7 +53,7 @@ mkdir build; cd build
 make install # Please be noticed this will install into your host system directories. 
 ```
 
-* Compiling the riscv-tests
+* Compiling the riscv-tests (make sure you have multilib compilation when buildng riscv-gnu-tools toolchain to allow 32bit ABI)
 Append to line in [isa/Makefile:33](https://github.com/riscv/riscv-tests/blob/6f7ebb610d6bb8817a9592cc06a7d108381f1761/isa/Makefile#L33)  `-march=rv32i -mabi=ilp32`
 ```bash
     cd riscv-tests/isa
@@ -101,7 +101,8 @@ RISC-V fesvr allows you to use elf as input to sodor cores so no need to generat
 You might want to run an individual test as below:
 ```
 cd emulator/rv32_1stage
-./emulator(-debug) +max-cycles=10000000 +verbose +loadmem=/work/experimental/riscv-sodor/riscv-tests/isa/rv32ui-p-add none
+./emulator +max-cycles=10000000 +verbose +loadmem=/work/experimental/riscv-sodor/riscv-tests/isa/rv32ui-p-add none
+./emulator-debug +max-cycles=10000000 +verbose +loadmem=/work/experimental/riscv-sodor/riscv-tests/benchmarks/qsort.riscv -vtest.vcd
 ```
 
 
